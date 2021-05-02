@@ -1,0 +1,858 @@
+//////////////Task1
+#include <iostream>
+using namespace std;
+struct abc
+{
+	int data;
+	abc* next;
+};
+abc* head = NULL; abc* tail = NULL;
+void showdata()
+{
+	abc* temp = head;
+	while (temp != NULL)
+	{
+		cout << temp->data << "->";
+		temp = temp->next;
+	}
+
+}
+void makenodes()
+{
+	abc* node = new abc;
+	cout << "Enter data in node " << endl;
+	cin >> node->data;
+	node->next = NULL;
+	if (head == NULL)
+	{
+		head = node;
+	}
+	else
+	{
+		abc* temp = head; // temp pointer being given head's address 
+		while (temp->next != NULL) // move temp unitl there is no node next
+		{
+			temp = temp->next;
+		}
+		temp->next = node; // 		node LINKED!
+
+			// nabeel did temp->next = &node; 
+
+			ko!
+	}
+
+}
+void inserthead()
+{
+	abc* newnode = new abc;
+	cout << "Enter data of new node you want to insert at head" << endl;
+	cin >> newnode->data;
+	newnode->next = NULL;
+	if (head == NULL)
+	{
+		head = newnode;
+	}
+	else
+	{
+		newnode->next = head;
+		head = newnode;
+	}
+}
+void inserttail()
+{
+
+	abc* node = new abc;
+	cout << "Enter data in node " << endl;
+	cin >> node->data;
+
+	if (tail = NULL)
+	{
+		head = node;
+		node->next = NULL;
+		tail = node;
+	}
+	else
+	{
+		node->next = head;
+		head = node;
+
+	}
+
+}
+void insertafterspecificdata()
+{
+	abc* newnode = new abc;
+	cout << "Enter the data of new node you want to insert after a specific data: " << endl;
+	cin >> newnode->data;
+	newnode->next = NULL;
+	if (head == NULL)
+	{
+		head = newnode;
+	}
+	else
+	{
+		int y;
+		cout << "After which data of node you want to insert new node:" << endl;
+		showdata();
+		cin >> y;
+		abc* temp = head;
+		while (temp->data != y)
+		{
+			temp = temp->next;
+		}
+		newnode->next = temp->next;
+		temp->next = newnode;
+		cout << "New linked list is : " << endl;
+		showdata();
+
+	}
+
+}
+void insertbeforespecificdata()
+{
+	int y;
+	abc* newnode = new abc;
+	cout << "Enter the data in new node which you want to insert before a specific data:" << endl;
+	cin >> newnode->data;
+	newnode->next = NULL;
+
+	cout << "Enter the data before which you want to insert the new node: " << endl;
+	cin >> y;
+	abc* temp = head;
+	while (temp->next->data != y)
+	{
+		temp = temp->next;
+	}
+	newnode->next = temp->next;
+	temp->next = newnode;
+	cout << "New linked list is : " << endl;
+	showdata();
+
+}
+void insertafterspecificnode()
+{
+	int y, count = 1;
+	abc* newnode = new abc;
+	cout << "Enter the data in new node which you want to insert after a specific node:" << endl;
+	cin >> newnode->data;
+	newnode->next = NULL;
+	cout << "Enter the number of node before which you want to insert the new node: " << endl;
+	cin >> y;
+	abc* temp = head;
+	while (count != y)
+	{
+		temp = temp->next;
+		count++;
+	}
+	newnode->next = temp->next;
+	temp->next = newnode;
+	cout << "New linked list is : " << endl;
+	showdata();
+
+}
+void insertbeforespecificnode()
+{
+	int y, count = 1;
+	abc* newnode = new abc;
+
+	cout << "Enter the data in new node which you want to insert after a specific node:" << endl;
+	cin >> newnode->data;
+	newnode->next = NULL;
+	cout << "Enter the number of node after which you want to insert the new node: " << endl;
+	cin >> y;
+	abc* temp = head;
+	while (count != y - 1)
+	{
+		temp = temp->next;
+		count++;
+	}
+	newnode->next = temp->next;
+	temp->next = newnode;
+	cout << "New linked list is : " << endl;
+	showdata();
+
+}
+void updatespecificnode()
+{
+	int y, count = 1;
+	cout << "Enter the number of node after which you want to update: " << endl;
+	cin >> y;
+	abc* temp = head;
+	while (count != y)
+	{
+		temp = temp->next;
+		count++;
+	}
+	cout << "Enter the new updated data:" << endl;
+	cin >> temp->data;
+	cout << "New linked list is : " << endl;
+	showdata();
+
+}
+void deletespecificnode()
+{
+	int y;
+	cout << "Enter the specific node data you want to delete: " << endl;
+
+	cin >> y;
+	abc* temp = head;
+	while (temp->next->data != y)
+	{
+		temp = temp->next;
+	}
+	temp->next = temp->next->next;
+	cout << "New linked list is : " << endl;
+	showdata();
+}
+void deletefirstnode()
+{
+	head = head->next;
+	cout << "New linked list is : " << endl;
+	showdata();
+}
+void deletelastnode()
+{
+	abc* temp = head;
+	while (temp->next->next != NULL)
+	{
+		temp = temp->next;
+	}
+	temp->next = NULL;
+	showdata();
+}
+int main()
+{
+	int a;
+	int x;
+	cout << "What operation you want to perform:" << endl;
+	cout << "1) Insert at tail" << endl;
+	cout << "2) Insert at head" << endl;
+	cout << "3) Insert before specific data" << endl;
+	cout << "4) Insert after specific data" << endl;
+	cout << "5) Insert after specific node" << endl;
+	cout << "6) Insert before specific node" << endl;
+	cout << "7) Update specific data" << endl;
+
+	cout << "8) Delete specific node" << endl;
+	cout << "9) Delete 1st node" << endl;
+	cout << "10) Delete last node" << endl;
+	cin >> a;
+	if (a == 1)
+	{
+		cout << "How many nodes you want to make:" << endl;
+		cin >> x;
+		for (int i = 0; i < x; i++)
+		{
+			makenodes();
+		}
+		inserttail();
+		showdata();
+	}
+	else if (a == 2)
+	{
+		cout << "How many nodes you want to make:" << endl;
+		cin >> x;
+		for (int i = 0; i < x; i++)
+		{
+			makenodes();
+		}
+		inserthead();
+		showdata();
+	}
+	else if (a == 3)
+	{
+		cout << "How many nodes you want to make:" << endl;
+		cin >> x;
+		for (int i = 0; i < x; i++)
+		{
+			makenodes();
+		}
+		insertbeforespecificdata();
+
+	}
+	else if (a == 4)
+
+	{
+		cout << "How many nodes you want to make:" << endl;
+		cin >> x;
+		for (int i = 0; i < x; i++)
+		{
+			makenodes();
+		}
+		insertafterspecificdata();
+
+	}
+	else if (a == 5)
+	{
+		cout << "How many nodes you want to make:" << endl;
+		cin >> x;
+		for (int i = 0; i < x; i++)
+		{
+			makenodes();
+		}
+		insertafterspecificnode();
+
+	}
+	else if (a == 6)
+	{
+		cout << "How many nodes you want to make:" << endl;
+		cin >> x;
+		for (int i = 0; i < x; i++)
+		{
+			makenodes();
+		}
+		insertbeforespecificnode();
+
+	}
+	else if (a == 7)
+	{
+		cout << "How many nodes you want to make:" << endl;
+		cin >> x;
+		for (int i = 0; i < x; i++)
+		{
+
+			makenodes();
+		}
+		updatespecificnode();
+
+	}
+	else if (a == 8)
+	{
+		cout << "How many nodes you want to make:" << endl;
+		cin >> x;
+		for (int i = 0; i < x; i++)
+		{
+			makenodes();
+		}
+		deletespecificnode();
+
+	}
+	else if (a == 9)
+	{
+		cout << "How many nodes you want to make:" << endl;
+		cin >> x;
+		for (int i = 0; i < x; i++)
+		{
+			makenodes();
+		}
+		deletefirstnode();
+
+	}
+	else if (a == 10)
+	{
+		cout << "How many nodes you want to make:" << endl;
+		cin >> x;
+		for (int i = 0; i < x; i++)
+		{
+			makenodes();
+		}
+		deletelastnode();
+
+	}
+
+	system("pause");
+}
+
+/////////////////TASK 2)
+
+#include <iostream>
+using namespace std;
+struct abc
+{
+	int data;
+	abc* prev;
+	abc* next;
+};
+abc* head = NULL;
+void insertathead()
+{
+	abc* newnode = new abc;;
+	cout << "Enter the data of the new node:" << endl;
+	cin >> newnode->data;
+	if (head == NULL)
+	{
+		head = newnode;
+	}
+	else
+	{
+		abc* temp = head;
+		newnode->next = head;
+		head->prev = newnode;
+		newnode->prev = NULL;
+		head = newnode;
+	}
+}
+void makenodes()
+{
+	abc* newnode = new abc;
+	cout << "Enter the data in node : " << endl;
+	cin >> newnode->data;
+	newnode->next = NULL;
+	if (head == NULL)
+	{
+		head = newnode;
+	}
+
+	else
+	{
+		abc* temp = head;
+		while (temp->next != NULL)
+		{
+			temp = temp->next;
+		}
+		temp->next = newnode;
+		newnode->prev = temp;
+	}
+}
+void showdata()
+{
+	abc* temp = head;
+	while (temp != NULL)
+	{
+		cout << temp->data << "<->";
+		temp = temp->next;
+	}
+}
+void inserttail()
+{
+	abc* newnode = new abc;
+	cout << "Enter the data in new node which you want to insert after a specific node:" << endl;
+	cin >> newnode->data;
+	newnode->next = NULL;
+	if (head = NULL)
+	{
+		head = newnode;
+	}
+	else
+	{
+		abc* temp = head;
+		while (temp->next != NULL)
+		{
+			temp = temp->next;
+		}
+		temp->next = newnode;
+		newnode->prev = temp;
+	}
+}
+void insertbeforespecificdata()
+{
+	int a;
+	abc* newnode = new abc;
+	cout << "Enter the data in new node which you want to insert after a specific node:" << endl;
+	cin >> newnode->data;
+	newnode->next = NULL;
+	cout << " Before which data you want to insert new node:" << endl;
+	cin >> a;
+	abc* temp = head;
+	while (temp->next->data != a)
+	{
+		temp = temp->next;
+	}
+	newnode->next = temp->next; //YAI 4 LINES SAHI HAIN???
+	temp->next->prev = newnode;
+	temp->next = newnode;
+	newnode->prev = temp;
+}
+void insertafterspecificdata()
+{
+	int a;
+	abc* newnode = new abc;
+	cout << "Enter the data in new node which you want to insert after a specific node:" << endl;
+	cin >> newnode->data;
+	newnode->next = NULL;
+	cout << " After which data you want to insert new node:" << endl;
+	cin >> a;
+	abc* temp = head;
+	while (temp->data != a)
+	{
+
+		temp = temp->next;
+	}
+	newnode->next = temp->next; //YAI 4 LINES SAHI HAIN???
+	temp->next->prev = newnode;
+	temp->next = newnode;
+	newnode->prev = temp;
+}
+void insertafterspecificnode()
+{
+	int a, count = 1;
+	abc* newnode = new abc;
+	cout << "Enter the data in new node which you want to insert after a specific node:" << endl;
+	cin >> newnode->data;
+	newnode->next = NULL;
+	cout << " After which node you want to insert new node:" << endl;
+	cin >> a;
+	abc* temp = head;
+	while (count != a)
+	{
+		temp = temp->next;
+		count++;
+	}
+	newnode->next = temp->next; //YAI 4 LINES SAHI HAIN???
+	temp->next->prev = newnode;
+	temp->next = newnode;
+	newnode->prev = temp;
+}
+void insertbeforespecificnode()
+{
+	int a, count = 1;
+	abc* newnode = new abc;
+	cout << "Enter the data in new node which you want to insert after a specific node:" << endl;
+	cin >> newnode->data;
+	newnode->next = NULL;
+	cout << " After which node you want to insert new node:" << endl;
+	cin >> a;
+	abc* temp = head;
+	while (count != a - 1)
+	{
+		temp = temp->next;
+		count++;
+	}
+	newnode->next = temp->next; //YAI 4 LINES SAHI HAIN???
+	temp->next->prev = newnode;
+	temp->next = newnode;
+	newnode->prev = temp;
+}
+void updatespecificdata()
+{
+	int a;
+	abc* temp = head;
+	cout << "Which data you want to update: " << endl;
+	cin >> a;
+	while (temp->data != a)
+	{
+		temp = temp->next;
+	}
+	cout << "Enter the new value you want to update it with: " << endl;
+	cin >> temp->data;
+}
+void deletespecificdata()
+{
+	int a;
+	abc* temp = head;
+	cout << "Enter the specific node data you want to delete:" << endl;
+	cin >> a;
+	while (temp->next->data != a)
+	{
+		temp = temp->next;
+	}
+
+	temp->next = temp->next->next;
+	temp->next->next->prev = temp;
+}
+void deletefirstnode()
+{
+	abc* temp = head;
+	head = temp->next;
+}
+void deletelastnode()
+{
+	abc* temp = head;
+	while (temp->next->next != NULL)
+	{
+		temp = temp->next;
+	}
+	temp->next = NULL;
+}
+int main()
+{
+	int a;
+	int x;
+	cout << "How many nodes you want to make:" << endl;
+	cin >> x;
+	for (int i = 0; i < x; i++)
+	{
+		makenodes();
+	}
+	cout << "What operation you want to perform:" << endl;
+	cout << "1) Insert at tail" << endl;
+	cout << "2) Insert at head" << endl;
+	cout << "3) Insert before specific data" << endl;
+	cout << "4) Insert after specific data" << endl;
+	cout << "5) Insert after specific node" << endl;
+	cout << "6) Insert before specific node" << endl;
+	cout << "7) Update specific data" << endl;
+	cout << "8) Delete specific node" << endl;
+	cout << "9) Delete 1st node" << endl;
+	cout << "10) Delete last node" << endl;
+	cin >> a;
+	if (a == 1)
+	{
+		inserttail();
+		showdata();
+	}
+	else if (a == 2)
+	{
+		insertathead();
+		showdata();
+	}
+	else if (a == 3)
+	{
+		insertbeforespecificdata();
+		showdata();
+	}
+	else if (a == 4)
+	{
+		insertafterspecificdata();
+		showdata();
+	}
+	else if (a == 5)
+	{
+		insertafterspecificnode();
+		showdata();
+	}
+	else if (a == 6)
+	{
+
+		insertafterspecificnode();
+		showdata();
+	}
+	else if (a == 7)
+	{
+		updatespecificdata();
+		showdata();
+	}
+	else if (a == 8)
+	{
+		deletespecificdata();
+		showdata();
+	}
+	else if (a == 9)
+	{
+		deletefirstnode();
+		showdata();
+	}
+	else if (a == 10)
+	{
+		deletelastnode();
+		showdata();
+	}
+	system("pause");
+}
+
+//////////////////TASK 4)
+#include <iostream>
+using namespace std;
+struct abc
+{
+	int data;
+	abc* next;
+};
+abc* head1 = NULL;
+
+abc* temp1 = head1;
+void makenodesONE()
+{
+	abc* newnode = new abc;
+	cout << "Enter the data in node: " << endl;
+	cin >> newnode->data;
+	newnode->next = NULL;
+	if (head1 == NULL)
+	{
+		head1 = newnode;
+	}
+	else
+	{
+		abc* temp1 = head1;
+		while (temp1->next != NULL)
+		{
+			temp1 = temp1->next;
+		}
+		temp1->next = newnode;
+	}
+}
+void split()
+{
+	abc* temp1 = head1;
+	cout << "Linked list 1 " << endl;
+	while (temp1 != NULL)
+	{
+		cout << temp1->data << "->";
+		temp1 = temp1->next->next;
+	}
+	cout << endl;
+	abc* temp2 = head1;
+	cout << "Linked list 2 " << endl;
+	temp2 = temp2->next;
+	while (temp2_ > next != NULL)
+	{
+		cout << temp2->data << "->";
+		temp2 = temp2->next->next;
+	}
+	cout << temp2->data;
+
+}
+int main()
+{
+	int x;
+	cout << " 1ST LINKED LIST:" << endl;
+	cout << "How many nodes you want to make:" << endl;
+	cin >> x;
+	for (int i = 0; i < x; i++)
+	{
+		makenodesONE();
+	}
+	cout << endl;
+	split();
+	system("pause");
+}
+Merge::
+#include <iostream>
+using namespace std;
+struct abc
+{
+	int data;
+	abc* next;
+};
+
+abc* head1 = NULL;
+abc* head2 = NULL;
+void makenodesONE(int n)
+{
+	abc* newnode = new abc;
+	newnode->data = n;
+	newnode->next = NULL;
+	if (head1 == NULL)
+	{
+		head1 = newnode;
+	}
+	else
+	{
+		abc* temp1 = head1;
+		while (temp1->next != NULL)
+		{
+			temp1 = temp1->next;
+		}
+		temp1->next = newnode;
+	}
+}
+void showdata()
+{
+	abc* temp = head1;
+	while (temp != NULL)
+	{
+		cout << temp->data << " ";
+		temp = temp->next;
+	}
+}
+void makenodesTWO(int n)
+{
+	abc* newnode = new abc;
+	newnode->data = n;
+	newnode->next = NULL;
+	if (head2 == NULL)
+	{
+		head2 = newnode;
+	}
+	else
+	{
+		abc* temp2 = head2;
+		while (temp2->next != NULL)
+		{
+			temp2 = temp2->next;
+		}
+		temp2->next = newnode;
+	}
+}
+void merge()
+{
+	abc* temp1 = head1;
+	abc* temp2 = head2;
+	while (temp1 != NULL)
+	{
+		if (temp2 == NULL)break;
+		head2 = head2->next;
+		temp2->next = temp1->next;
+		temp1->next = temp2;
+		temp2 = head2;
+		temp1 = temp1->next->next;
+	}
+}
+int main()
+{
+	int x, y, n;
+	cout << " 1ST LINKED LIST:" << endl;
+	cout << "How many nodes you want to make:" << endl;
+
+	cin >> x;
+	for (int i = 0; i < x; i++)
+	{
+		cin >> n;
+		makenodesONE(n);
+	}
+	cout << " 2nd LINKED LIST:" << endl;
+	cout << "How many nodes you want to make:" << endl;
+	cin >> y;
+	for (int i = 0; i < x; i++)
+	{
+		cin >> n;
+		makenodesTWO(n);
+	}
+	merge();
+	showdata();
+	system("pause");
+}
+
+///////////////////////Task 3)
+#include <iostream>
+using namespace std;
+struct abc
+{
+	int data;
+	abc* next;
+};
+abc* head1 = NULL;
+abc* temp1 = head1;
+void showdata()
+{
+	abc* temp = head1;
+	while (temp != NULL)
+	{
+		cout << temp->data << " ";
+		temp = temp->next;
+	}
+}
+void makenodesONE()
+{
+
+	abc* newnode = new abc;
+	cout << "Enter the data in node: " << endl;
+	cin >> newnode->data;
+	newnode->next = NULL;
+	if (head1 == NULL)
+	{
+		head1 = newnode;
+	}
+	else
+	{
+		abc* temp1 = head1;
+		while (temp1->next != NULL)
+		{
+			temp1 = temp1->next;
+		}
+		temp1->next = newnode;
+	}
+}
+void split()
+{
+	while (temp1->next != NULL)
+	{
+		cout << temp1->data << "->";
+		temp1 = temp1->next->next;
+	}
+	cout << temp1->data << endl;
+}
+int main()
+{
+	int x;
+	cout << " 1ST LINKED LIST:" << endl;
+	cout << "How many nodes you want to make:" << endl;
+	cin >> x;
+	for (int i = 0; i < x; i++)
+	{
+		makenodesONE();
+	}
+	cout << endl;
+	split();
+	system("pause");
+}
